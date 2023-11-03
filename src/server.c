@@ -353,7 +353,7 @@ int main(int argc, char **argv) {
         debug_level = parse_int("debug", optarg);
         break;
       case 'a':
-        server->url_arg = true;
+        // server->url_arg = true; 禁止执行自定义指令
         break;
       case 'W':
         server->writable = true;
@@ -547,9 +547,9 @@ int main(int argc, char **argv) {
   if (ssl) {
     info.ssl_cert_filepath = cert_path;
     info.ssl_private_key_filepath = key_path;
-    #ifndef LWS_WITH_MBEDTLS
+#ifndef LWS_WITH_MBEDTLS
     info.ssl_options_set = SSL_OP_NO_TLSv1 | SSL_OP_NO_TLSv1_1;
-    #endif
+#endif
     if (strlen(ca_path) > 0) {
       info.ssl_ca_filepath = ca_path;
       info.options |= LWS_SERVER_OPTION_REQUIRE_VALID_OPENSSL_CLIENT_CERT;
